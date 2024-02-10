@@ -11,7 +11,7 @@ public class Frame extends JFrame {
         int w= screenSize.width;
         int h= screenSize.height;
         if (w!=1920||h!=1080){
-            setSize(1920, 1080);
+            setSize(w, w*9/16-20);
         }
         else{
             setExtendedState(JFrame.MAXIMIZED_BOTH);
