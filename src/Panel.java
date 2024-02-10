@@ -263,7 +263,14 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
             fontMetrics=g.getFontMetrics();
             int sw=fontMetrics.stringWidth(input);
             int sh=fontMetrics.getAscent();
-            g.fillRect(45*w/ i3+sw,1755*h/ i4, 5, sh*9/10);
+            if (getWidth()==1920){
+                g.fillRect(45*w/ i3+sw,1755*h/ i4, 5, sh*9/10);
+            }
+            else{
+                g.fillRect(45*w/ i3+sw,1748*h/ i4, 5, sh*9/10);
+                System.out.println(1);
+            }
+
         }
 
         //System.out.println(1800*h/ i4);
