@@ -73,20 +73,27 @@ public class Panel extends JPanel implements ActionListener {
 
 
     public void paint(Graphics g) {
-        int w = getWidth();
-        int h = getHeight();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int w= screenSize.width;
+        int h= screenSize.height;
+        w=getWidth();
+        h=getHeight();
         super.paint(g);
         setBackground(Color.BLACK);
         //g.drawImage(img, );
+
         int i3 = 3200;
-        int i4 = h*1800/1009;
-        g.drawImage(top, 255*w/ i3, 400*h/ i4, 2700*w/ i3, 410*h/ i4, null);
-        g.drawImage(bottom, 130*w/ i3, 850*h/ i4, 2960*w/ i3, 490*h/ i4, null);
+        int i4 = i3*9/16;
+        System.out.println(w);
+        System.out.println(h);
+        System.out.println(i4);
+        g.drawImage(top, 255*w/ i3, 530*h/ i4, 2700*w/ i3, 450*h/ i4, null);
+        g.drawImage(bottom, 130*w/ i3, 1020*h/ i4, 2960*w/ i3, 530*h/ i4, null);
         g.setColor(new Color(0, 100, 40));
         int[]xlst=new int[63];
         int[]ylst=new int[63];
         int i1 = 3000;
-        int i2 = h*1600/1009;
+        int i2 = 1500;
         xlst[0]=1570*w/i1;
         ylst[0]=20*h/i2;
 
@@ -224,10 +231,10 @@ public class Panel extends JPanel implements ActionListener {
 
         String[] lst= tree.forDraw();
         for (int i=0;i<63;i++){
-            g.drawOval(xlst[i]-50*w/1600, 200*w/1600+ylst[i], 30*w/1600, 27*h/900);
+            g.drawOval(xlst[i]-50*2*w/i3, 200*w/i2+ylst[i], 60*w/i3, 45*h/i2);
             fontMetrics=g.getFontMetrics();
             width = fontMetrics.stringWidth(lst[i]);
-            g.drawString(lst[i],xlst[i]-135*w/6400-width*w/ i3,215*w/1600+ylst[i]);
+            g.drawString(lst[i],xlst[i]-275*w/i3/4-width*w/ i3,215*w/i2+ylst[i]);
         }
 
 
@@ -247,107 +254,7 @@ public class Panel extends JPanel implements ActionListener {
 
 
 
-        /*
 
-        //g.drawString(s, 800, 300);
-
-
-        g.drawLine(824,305,600,370);
-        g.drawLine(880,305,1115,370);
-        g.drawLine(570,395,470,461);
-        g.drawLine(622,395,732,461);
-        g.drawLine(1090,395,1000,461);
-        g.drawLine(1145,395,1257,461);
-        g.drawLine(445,490,410,550);
-        g.drawLine(493,490,535,550);
-        g.drawLine(707,490,667,550);
-        g.drawLine(760,490,795,550);
-        g.drawLine(1022,490,1060,550);
-        g.drawLine(968,490,935,550);
-        g.drawLine(1235,490,1200,550);
-        g.drawLine(1285,490,1325,550);
-        g.drawLine(390,580,370,640);
-        g.drawLine(430,580,445,640);
-        g.drawLine(555,580,575,640);
-        g.drawLine(520,580,500,640);
-        g.drawLine(648,580,628,640);
-        g.drawLine(688,580,708,640);
-        g.drawLine(778,580,758,640);
-        g.drawLine(820,580,840,640);
-        g.drawLine(915,580,895,640);
-        g.drawLine(955,580,975,640);
-        g.drawLine(1080,580,1100,640);
-        g.drawLine(1045,580,1025,640);
-        g.drawLine(1175,580,1160,640);
-        g.drawLine(1213,580,1233,640);
-        g.drawLine(1313,580,1293,640);
-        g.drawLine(1345,580,1365,640);
-        g.setColor(new Color(0,100,0));
-
-        g.setFont(new Font("Sans",Font.BOLD,20));
-
-        int[]xlst=new int[5];
-        xlst[0]=90;
-        xlst[1]=42;
-        xlst[2]=18;
-        xlst[3]=7;
-        xlst[4]=0;
-        int[]spaces=new int[5];
-        spaces[0]=0;
-        spaces[1]=89;
-        spaces[2]=41;
-        spaces[3]=16;
-        spaces[4]=4;
-        int y=300;
-        int i=0;
-        for (String s:lst){
-            String[]arr=s.split(" ");
-            int x=xlst[i];
-            String put ="";
-            for (int j=0;j<x;j++){
-                put+=" ";
-            }
-            int t=0;
-            for (String s1:arr){
-                put+=s1;
-                for (int j=0;j<spaces[i];j++){
-                    put+=" ";
-                }
-                if (t==6&&i==3){
-                    put+=" ";
-                    //put+=" ";
-                    //put+=" ";
-                }
-                if (t==3&&i==3){
-                    put+=" ";
-                    //put+=" ";
-                }
-                if (t==4&&i==3){
-                    //put+=" ";
-                }
-                if (t==1&&i==3){
-                    //put=put.substring(0,put.length()-1);
-                }
-                if (t==0&&i==3){
-                    put=put.substring(0,put.length()-1);
-                }
-                if (t==3&&i==4){
-                    put=put.substring(0,put.length()-1);
-                }
-
-                if (t==9&&i==4){
-                    put=put.substring(0,put.length()-1);
-                }
-                t++;
-            }
-            if (i==4){
-
-            }
-
-            i++;
-            y+=90;
-        }
-        */
     }
 
 
@@ -362,14 +269,11 @@ public class Panel extends JPanel implements ActionListener {
             else{
                 tree.add(Integer.parseInt(s));
                 display=s+" added!";
-                if (tree.getLevel(Integer.parseInt(s))>4){
+                if (tree.getLevel(Integer.parseInt(s))>5){
                     display=s+" exceeds level limits!";
                     tree.remove(Integer.parseInt(s));
                 }
-                if (s.length()>5){
-                    display=s+" is too long!";
-                    tree.remove(Integer.parseInt(s));
-                }
+                
             }
 
             input.setText("");
